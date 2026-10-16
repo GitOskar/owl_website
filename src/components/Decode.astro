@@ -1,0 +1,44 @@
+<script>
+  const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>/{}[]#$%&*+=';
+  const STEP_MS = 55;
+  const SETTLE_FRAMES = 3;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const randomGlyph = () => GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+
+  const decode = (el: HTMLElement) => {
+    const target = el.textContent ?? '';
+    const length = target.length;
+    let frame = 0;
+    el.setAttribute('aria-label', target);
+    const timer = window.setInterval(() => {
+      const settled = Math.floor(frame / SETTLE_FRAMES);
+      let out = '';
+      for (let i = 0; i < length; i++) {
+        const ch = target[i];
+        out += i < settled || ch === ' ' ? ch : randomGlyph();
+      }
+      el.textContent = out;
+      frame++;
+      if (settled >= length) {
+        window.clearInterval(timer);
+        el.textContent = target;
+        el.removeAttribute('aria-label');
+      }
+    }, STEP_MS);
+  };
+
+  if (!reduced) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          observer.unobserve(entry.target);
+          decode(entry.target as HTMLElement);
+        }
+      },
+      { threshold: 0.6 }
+    );
+    document.querySelectorAll<HTMLElement>('section h2').forEach((h) => observer.observe(h));
+  }
+</script>

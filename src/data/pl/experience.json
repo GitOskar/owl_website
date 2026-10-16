@@ -1,0 +1,34 @@
+{
+  "role": {
+    "title": "Software Engineer",
+    "context": "Firma z branży fintech, obsługa płatności i usługi finansowe",
+    "period": "mar 2021 – obecnie"
+  },
+  "cards": [
+    {
+      "title": "Integracje z organizacjami kartowymi i systemami płatności",
+      "summary": "Integracja platformy z organizacjami kartowymi i metodami płatności: Mastercard i Visa przez ISO 8583, EMV 3-D Secure dla Visa i Mastercard oraz BLIK.",
+      "tags": ["Java", "Spring Boot", "Microservices", "ISO 8583", "3-D Secure", "BLIK"]
+    },
+    {
+      "title": "Monitoring i rozliczenia",
+      "summary": "Utrzymanie i rozwój wewnętrznego systemu monitoringu i rozliczeń oraz wsparcie analityków finansowych w dostępie do danych i narzędzi.",
+      "tags": ["Java", "SQL", "Settlement", "Monitoring"]
+    },
+    {
+      "title": "Integracje regulacyjne",
+      "summary": "Budowa integracji z krajowymi i europejskimi systemami regulacyjnymi, praca z danymi wrażliwymi i udział w audytach zgodności.",
+      "tags": ["Java", "REST", "SOAP", "Compliance"]
+    },
+    {
+      "title": "API dla klientów",
+      "summary": "Projektowanie API udostępnianego klientom i wsparcie przy integracji z systemem, od dokumentacji po diagnozowanie problemów.",
+      "tags": ["REST", "OpenAPI", "Documentation", "Client support"]
+    },
+    {
+      "title": "Odpowiedzialność za produkcję",
+      "summary": "Support trzeciej linii i dyżury, rozwiązywanie krytycznych problemów na produkcji, planowanie i przeprowadzanie wdrożeń, pisanie testów i dokumentacji oraz dzielenie się dobrymi praktykami z innymi programistami.",
+      "tags": ["On-call", "Deployments", "JUnit", "Spock", "Code review"]
+    }
+  ]
+}

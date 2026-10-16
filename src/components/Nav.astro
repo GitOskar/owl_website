@@ -1,0 +1,127 @@
+---
+import OwlMark from './OwlMark.astro';
+import LangSwitch from './LangSwitch.astro';
+import { ui, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+---
+
+<nav class="nav" aria-label={t.navMain}>
+  <a class="brand" href="#hero" aria-label={t.backToTop}>
+    <OwlMark class="mark" />
+    <span>OWL</span>
+  </a>
+  <ul>
+    <li><a href="#about">{t.about}</a></li>
+    <li><a href="#experience">{t.experience}</a></li>
+    <li><a href="#services">{t.services}</a></li>
+    <li><a href="#contact">{t.contact}</a></li>
+    <li><LangSwitch lang={lang} /></li>
+  </ul>
+</nav>
+
+<style>
+  .nav {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.7rem max(20px, 4vw);
+    background: color-mix(in srgb, var(--bg) 94%, transparent);
+    border-bottom: 1px solid var(--line);
+    opacity: 0;
+    transform: translateY(-100%);
+    pointer-events: none;
+    visibility: hidden;
+    transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1), visibility 0s 0.6s;
+  }
+  .nav.on {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    visibility: visible;
+    transition-delay: 0s;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--fg);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.3em;
+  }
+  .brand :global(.mark) {
+    height: 30px;
+    width: auto;
+    transform: scale(0.4) rotate(-8deg);
+    opacity: 0;
+    transition: transform 0.8s 0.15s cubic-bezier(0.2, 0.9, 0.3, 1.4), opacity 0.5s 0.15s;
+  }
+  .nav.on .brand :global(.mark) { transform: none; opacity: 1; }
+  .brand :global(.eyes) {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+    animation: blink 6s 2s infinite;
+  }
+  @keyframes blink {
+    0%, 94%, 100% { transform: scaleY(1); }
+    97% { transform: scaleY(0.1); }
+  }
+  ul {
+    display: flex;
+    gap: clamp(0.9rem, 3vw, 2rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  ul a {
+    white-space: nowrap;
+    color: var(--muted);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  ul a:hover { color: var(--owl-hot); }
+  @media (max-width: 560px) {
+    .brand span { display: none; }
+    .nav { gap: 0.6rem; padding-inline: 16px; }
+    ul { gap: 0.6rem; align-items: center; }
+    ul a { font-size: 0.68rem; letter-spacing: 0.04em; }
+  }
+  @media (max-width: 400px) {
+    .nav { gap: 0.4rem; padding-inline: 12px; }
+    ul { gap: 0.4rem; }
+    ul a { font-size: 0.62rem; letter-spacing: 0.02em; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav, .brand :global(.mark) { transition: none; }
+  }
+</style>
+
+<script>
+  const nav = document.querySelector<HTMLElement>('.nav');
+  const hero = document.querySelector<HTMLElement>('#hero');
+
+  if (nav && hero) {
+    const update = () => {
+      const end = hero.offsetHeight - innerHeight;
+      nav.classList.toggle('on', scrollY >= end * 0.92);
+    };
+    addEventListener('scroll', update, { passive: true });
+    addEventListener('resize', update);
+    update();
+  }
+</script>

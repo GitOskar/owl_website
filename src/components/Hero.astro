@@ -1,0 +1,237 @@
+---
+import OwlLogo from './OwlLogo.astro';
+import LangSwitch from './LangSwitch.astro';
+import { ui, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+---
+
+<header class="hero" id="hero">
+  <div class="stage">
+    <div class="origin">
+      <div class="zoom"><OwlLogo /></div>
+      <span class="flash" aria-hidden="true"></span>
+    </div>
+    <h1 class="tagline">Oskar Wołosiuk Labs</h1>
+    <nav class="corners" aria-label={t.navSections}>
+      <a class="corner tl" href="#about"><span class="idx">01</span><span class="name">{t.about}</span></a>
+      <a class="corner tr" href="#experience"><span class="idx">02</span><span class="name">{t.experience}</span></a>
+      <a class="corner bl" href="#services"><span class="idx">03</span><span class="name">{t.services}</span></a>
+      <a class="corner br" href="#contact"><span class="idx">04</span><span class="name">{t.contact}</span></a>
+    </nav>
+    <div class="hero-lang"><LangSwitch lang={lang} /></div>
+    <a class="scroll" href="#about" aria-label={t.scrollToContent}>↓</a>
+  </div>
+</header>
+
+<style>
+  .hero {
+    height: 260svh;
+    position: relative;
+  }
+  .stage {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 1.5rem;
+    padding: 4rem 20px 5rem;
+    overflow: hidden;
+  }
+  .origin { position: relative; }
+  .stage.covered .zoom { visibility: hidden; }
+  .stage.deep .zoom :global(*) { animation-play-state: paused !important; }
+  .stage.deep .zoom :global(.eyes) { filter: none; }
+  .stage.done .flash { display: none; }
+  .stage.done .zoom { visibility: hidden; }
+  .zoom {
+    transform-origin: 50.2% 20.2%;
+    transform: scale(var(--s, 1));
+  }
+  .flash {
+    position: absolute;
+    left: 50.2%;
+    top: 20.2%;
+    width: 1000px;
+    height: 1000px;
+    translate: -50% -50%;
+    scale: var(--f, 0);
+    will-change: scale;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .flash::before, .flash::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+  }
+  .flash::before {
+    background: radial-gradient(closest-side, var(--owl-hot) 55%, transparent 100%);
+  }
+  .flash::after {
+    background: radial-gradient(closest-side, var(--bg) 55%, transparent 100%);
+    opacity: var(--q, 0);
+  }
+  .tagline {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: var(--t, 1);
+    animation: fade-in 0.8s 2.6s both;
+  }
+  .scroll {
+    position: absolute;
+    bottom: 1.5rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 1.25rem;
+    opacity: var(--t, 1);
+    animation: fade-in 0.8s 3.2s both, nudge 1.8s 4s ease-in-out infinite;
+  }
+  .hero-lang {
+    position: absolute;
+    top: 0.75rem;
+    right: max(20px, 4vw);
+    z-index: 2;
+    opacity: var(--t, 1);
+    animation: fade-in 0.8s 3s both;
+  }
+  .stage.away .hero-lang { pointer-events: none; }
+  .stage.deep .hero-lang { visibility: hidden; }
+  .scroll:hover { color: var(--owl-hot); }
+  .corners {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    width: min(94vw, 1200px);
+    height: min(88svh, 680px);
+    pointer-events: none;
+  }
+  .corner {
+    --pad: 0px;
+    position: absolute;
+    display: grid;
+    gap: 0.15rem;
+    padding: 1rem 1.25rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    border: 0 solid var(--line);
+    opacity: var(--t, 1);
+    pointer-events: auto;
+    animation: fade-in 0.8s 3s both;
+    transition: color 0.25s, border-color 0.25s, padding 0.25s;
+  }
+  .stage.away .corner { pointer-events: none; }
+  .stage.deep .corners, .stage.deep .scroll { visibility: hidden; }
+  .corner .idx { font-size: 0.7rem; color: var(--owl); letter-spacing: 0.2em; }
+  .corner .name { font-size: clamp(0.8rem, 1.6vw, 1rem); }
+  .corner:hover, .corner:focus-visible { color: var(--fg); border-color: var(--owl-hot); }
+  .corner:hover .idx, .corner:focus-visible .idx { color: var(--owl-hot); }
+  .tl { top: var(--pad); left: var(--pad); border-width: 2px 0 0 2px; }
+  .tr { top: var(--pad); right: var(--pad); border-width: 2px 2px 0 0; text-align: right; }
+  .bl { bottom: var(--pad); left: var(--pad); border-width: 0 0 2px 2px; }
+  .br { bottom: var(--pad); right: var(--pad); border-width: 0 2px 2px 0; text-align: right; }
+  .tl:hover { padding: 1.35rem 1.6rem; }
+  .tr:hover { padding: 1.35rem 1.6rem; }
+  .bl:hover { padding: 1.35rem 1.6rem; }
+  .br:hover { padding: 1.35rem 1.6rem; }
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+  }
+  @keyframes nudge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero { height: 100svh; }
+    .flash { display: none; }
+    .tagline, .scroll, .corner, .hero-lang { animation: none; }
+  }
+</style>
+
+<script>
+  const hero = document.querySelector<HTMLElement>('#hero');
+  const stage = hero?.querySelector<HTMLElement>('.stage');
+  const zoom = hero?.querySelector<HTMLElement>('.zoom');
+  const flash = hero?.querySelector<HTMLElement>('.flash');
+  const content = document.querySelector<HTMLElement>('main');
+  const fades = [...(hero?.querySelectorAll<HTMLElement>('.tagline, .corners, .scroll, .hero-lang') ?? [])];
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (hero && stage && zoom && flash && content) {
+    const clamp = (v: number) => Math.min(1, Math.max(0, v));
+    const zoomMax = Math.log(40);
+    let raf = 0;
+
+    let current = 0;
+
+    const target = () => {
+      const span = hero.offsetHeight - innerHeight;
+      return span > 0 ? clamp(scrollY / span) : 0;
+    };
+
+    const apply = (p: number) => {
+      const z = clamp(p / 0.8) ** 2;
+      zoom.style.setProperty('--s', String(Math.exp(zoomMax * z)));
+      stage.classList.toggle('deep', z > 0.5);
+      const d = 6000 * clamp((p - 0.25) / 0.55) ** 1.7;
+      flash.style.setProperty('--f', String(d / 1000));
+      stage.classList.toggle('covered', d * 0.275 > Math.hypot(innerWidth, innerHeight));
+      const q = clamp((p - 0.52) / 0.26) ** 1.4;
+      flash.style.setProperty('--q', String(q));
+      content.style.setProperty('--reveal', String(q));
+      const t = String(1 - clamp(p / 0.15));
+      for (const el of fades) el.style.setProperty('--t', t);
+      stage.classList.toggle('away', p > 0.1);
+    };
+
+    let settledPast = false;
+
+    const update = () => {
+      raf = 0;
+      if (reduced.matches) {
+        for (const el of [zoom, flash, content, ...fades]) el.removeAttribute('style');
+        stage.classList.remove('covered', 'away', 'done', 'deep');
+        return;
+      }
+      const goal = target();
+      if (goal === 1 && current === 1 && settledPast) return;
+      settledPast = false;
+      current += (goal - current) * 0.22;
+      if (Math.abs(goal - current) < 0.0004) current = goal;
+      apply(current);
+      if (current !== goal) {
+        raf = requestAnimationFrame(update);
+      } else if (goal === 1) {
+        settledPast = true;
+        stage.classList.add('done');
+      }
+      if (goal < 1) stage.classList.remove('done');
+    };
+
+    const schedule = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+
+    addEventListener('scroll', schedule, { passive: true });
+    addEventListener('resize', schedule);
+    current = target();
+    update();
+  }
+</script>

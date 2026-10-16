@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from './Hero.astro';
+import Nav from './Nav.astro';
+import About from './About.astro';
+import Experience from './Experience.astro';
+import Services from './Services.astro';
+import Contact from './Contact.astro';
+import OwlMark from './OwlMark.astro';
+import Decode from './Decode.astro';
+import Reveal from './Reveal.astro';
+import LangSwitch from './LangSwitch.astro';
+import { ui, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = ui[lang];
+---
+
+<Base lang={lang}>
+  <Nav lang={lang} />
+  <Hero lang={lang} />
+
+  <main class="container">
+    <About lang={lang} />
+
+    <Experience lang={lang} />
+
+    <Services lang={lang} />
+
+    <Contact lang={lang} />
+  </main>
+
+  <footer class="container">
+    <a class="top" href="#hero" aria-label={t.backToTop}>
+      <OwlMark class="mark" />
+    </a>
+    <p>© {new Date().getFullYear()} OWL — Oskar Wołosiuk Labs</p>
+    <div class="lang"><LangSwitch lang={lang} up /></div>
+  </footer>
+
+  <Decode />
+  <Reveal />
+</Base>
+
+<style>
+  main { display: grid; gap: 4rem; padding-block: 4rem; margin-top: -55svh; position: relative; z-index: 1; opacity: var(--reveal, 1); }
+  @media (prefers-reduced-motion: reduce) {
+    main { margin-top: 0; }
+  }
+  footer { display: flex; align-items: center; gap: 1rem; padding-block: 2rem 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
+  footer p { margin: 0; }
+  .lang { margin-left: auto; }
+  .top { display: flex; line-height: 0; opacity: 0.55; filter: grayscale(1); transition: opacity 0.2s, filter 0.2s; }
+  .top:hover, .top:focus-visible { opacity: 1; filter: none; }
+  footer :global(.mark) { height: 28px; width: auto; }
+</style>

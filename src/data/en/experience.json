@@ -1,0 +1,62 @@
+{
+  "role": {
+    "title": "Software Engineer",
+    "context": "Fintech company, payment processing and financial services",
+    "period": "Mar 2021 – present"
+  },
+  "cards": [
+    {
+      "title": "Card scheme and payment integrations",
+      "summary": "Integrated the platform with card schemes and payment methods: Mastercard and Visa over ISO 8583, EMV 3-D Secure for Visa and Mastercard, and BLIK.",
+      "tags": [
+        "Java",
+        "Spring Boot",
+        "Microservices",
+        "ISO 8583",
+        "3-D Secure",
+        "BLIK"
+      ]
+    },
+    {
+      "title": "Monitoring and settlement",
+      "summary": "Ran and developed an internal monitoring and settlement system, and supported financial analysts with the data and tooling they needed.",
+      "tags": [
+        "Java",
+        "SQL",
+        "Settlement",
+        "Monitoring"
+      ]
+    },
+    {
+      "title": "Regulatory integrations",
+      "summary": "Built integrations with national and European regulatory systems, working with sensitive data and taking part in compliance audits.",
+      "tags": [
+        "Java",
+        "REST",
+        "SOAP",
+        "Compliance"
+      ]
+    },
+    {
+      "title": "Client-facing APIs",
+      "summary": "Planned the API offered to clients and supported them through integration with the system, from documentation to troubleshooting.",
+      "tags": [
+        "REST",
+        "OpenAPI",
+        "Documentation",
+        "Client support"
+      ]
+    },
+    {
+      "title": "Production ownership",
+      "summary": "Third-line support and on-call, resolving critical production issues, planning and executing deployments, writing tests and documentation, and sharing good practices with other developers.",
+      "tags": [
+        "On-call",
+        "Deployments",
+        "JUnit",
+        "Spock",
+        "Code review"
+      ]
+    }
+  ]
+}

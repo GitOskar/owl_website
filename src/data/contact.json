@@ -1,0 +1,21 @@
+{
+  "email": "contact@owl-labs.pl",
+  "links": [
+    {
+      "label": "LinkedIn",
+      "icon": "linkedin",
+      "url": "https://www.linkedin.com/in/oskar-wo%C5%82osiuk-6293a81b5/"
+    },
+    {
+      "label": "GitHub",
+      "icon": "github",
+      "url": "https://github.com/GitOskar"
+    }
+  ],
+  "company": {
+    "name": "Oskar Wołosiuk Labs",
+    "shortName": "OWL",
+    "nip": "7123520344",
+    "regon": "545961476"
+  }
+}

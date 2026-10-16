@@ -1,0 +1,57 @@
+---
+import { content } from '../i18n/content';
+import { ui, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { intro, cards } = content[lang].services;
+const t = ui[lang];
+---
+
+<section id="services">
+  <h2>{t.services}</h2>
+  <p class="intro">{intro}</p>
+
+  <ol class="list">
+    {cards.map((card, i) => (
+      <li class="spot">
+        <span class="idx">{String(i + 1).padStart(2, '0')}</span>
+        <div class="body">
+          <h3>{card.title}</h3>
+          <p>{card.summary}</p>
+        </div>
+        <ul class="tags">
+          {card.tags.map((tag) => <li>{tag}</li>)}
+        </ul>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<style>
+  .intro { margin-bottom: 1.5rem; }
+  .list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .list > li { position: relative; display: grid; grid-template-columns: 3.5rem 1fr minmax(180px, 14rem); gap: 0.5rem 1.5rem; align-items: start; padding: 1.5rem 0 1.5rem 0.25rem; border-bottom: 1px solid var(--line); transition: padding-left 0.25s; }
+  .list > li::before { content: ""; position: absolute; left: 0; top: -1px; width: 0; height: 2px; background: var(--owl-hot); transition: width 0.3s; }
+  .list > li::after { content: ""; position: absolute; inset: 0 -4rem; pointer-events: none; opacity: var(--gl, 0); transition: opacity 0.3s; background: radial-gradient(circle 240px at calc(var(--mx, 50%) + 4rem) var(--my, 50%), rgba(255, 90, 79, 0.1), transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 8rem, #000 calc(100% - 8rem), transparent); mask-image: linear-gradient(90deg, transparent, #000 8rem, #000 calc(100% - 8rem), transparent); }
+  .list > li:hover { padding-left: 0.9rem; }
+  .list > li:hover::before { width: 100%; }
+  .idx { font-family: var(--font-display); font-size: 1.6rem; line-height: 1.2; letter-spacing: 0.05em; color: var(--owl); }
+  h3 { margin: 0 0 0.35rem; font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; letter-spacing: 0.03em; color: var(--fg); }
+  .body p { margin: 0; font-size: 0.95rem; }
+  .tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.35rem 1rem; }
+  .tags li { font-size: 0.8rem; color: var(--muted); }
+  @media (max-width: 720px) {
+    .list > li { grid-template-columns: 2.5rem 1fr; }
+    .tags { grid-column: 2; justify-content: flex-start; }
+  }
+  @media (prefers-reduced-motion: reduce), (hover: none) {
+    .list > li::after { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .list > li, .list > li::before { transition: none; }
+  }
+</style>

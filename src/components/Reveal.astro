@@ -1,0 +1,41 @@
+<style is:global>
+  .reveal:not(.in) {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(6px);
+  }
+  .reveal.in {
+    animation: reveal 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms) backwards;
+  }
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(16px); filter: blur(6px); }
+  }
+</style>
+
+<script>
+  const SELECTOR = '.highlights li, .cards > li, #services .list > li';
+  const STAGGER_MS = 70;
+  const MAX_STAGGER = 4;
+
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const items = document.querySelectorAll<HTMLElement>(SELECTOR);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        let n = 0;
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const el = entry.target as HTMLElement;
+          observer.unobserve(el);
+          el.style.setProperty('--d', `${Math.min(n++, MAX_STAGGER) * STAGGER_MS}ms`);
+          el.classList.add('in');
+          el.addEventListener('animationend', () => el.classList.remove('reveal'), { once: true });
+        }
+      },
+      { threshold: 0.15 }
+    );
+    for (const el of items) {
+      el.classList.add('reveal');
+      observer.observe(el);
+    }
+  }
+</script>

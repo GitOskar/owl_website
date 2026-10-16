@@ -1,0 +1,35 @@
+{
+  "intro": "Backend engineering for teams and businesses that need reliable systems. Available for B2B contracts, permanent roles and private commissions.",
+  "cards": [
+    {
+      "title": "Backend and microservices",
+      "summary": "Design and development of backend systems in Java and Spring, from technical analysis and architecture to implementation, testing and production deployment.",
+      "tags": ["Java", "Spring Boot", "Microservices", "Kafka", "PostgreSQL"]
+    },
+    {
+      "title": "Payment and financial integrations",
+      "summary": "Connecting systems with card schemes, payment methods and regulatory platforms, with attention to security, sensitive data and compliance.",
+      "tags": ["ISO 8583", "3-D Secure", "BLIK", "PCI DSS"]
+    },
+    {
+      "title": "API design and integration support",
+      "summary": "Planning clear, well-documented APIs and helping clients integrate with them, from documentation to troubleshooting.",
+      "tags": ["REST", "OpenAPI", "Documentation", "Client support"]
+    },
+    {
+      "title": "Production support and reliability",
+      "summary": "Third-line support, incident resolution, monitoring and safe deployments, so critical systems keep running.",
+      "tags": ["On-call", "Observability", "Deployments", "Testing"]
+    },
+    {
+      "title": "Websites and web applications",
+      "summary": "Fast, clean websites for businesses and individuals, from design and content structure to development and launch.",
+      "tags": ["Astro", "TypeScript", "Angular", "HTML", "CSS"]
+    },
+    {
+      "title": "CI/CD pipelines",
+      "summary": "Setting up and improving build, test and release pipelines, so changes reach production automatically, safely and repeatably.",
+      "tags": ["Jenkins", "Docker", "Maven", "Gradle", "SonarQube"]
+    }
+  ]
+}

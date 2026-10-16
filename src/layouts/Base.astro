@@ -1,0 +1,99 @@
+---
+import '../styles/global.css';
+import Spotlight from '../components/Spotlight.astro';
+import Backdrop from '../components/Backdrop.astro';
+import { ui, languages, homePath, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const { title, description } = ui[lang];
+const site = Astro.site;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0c0b0b" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    {site && <link rel="canonical" href={new URL(homePath(lang), site)} />}
+    {site && languages.map((l) => <link rel="alternate" hreflang={l} href={new URL(homePath(l), site)} />)}
+    {site && <link rel="alternate" hreflang="x-default" href={new URL(homePath('en'), site)} />}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=IBM+Plex+Sans:wght@400;500&display=swap"
+    />
+
+    <title>{title}</title>
+  </head>
+  <body>
+    <Backdrop />
+    <Spotlight />
+    <slot />
+
+    <script>
+      const MIN_MS = 600;
+      const MS_PER_PX = 0.6;
+      const MAX_MS = 2800;
+      const BASE_AREA = 1440 * 900;
+      const MAX_LOAD = 1.8;
+
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+      const ease = (t: number) => (t < 0.5 ? 4 * t ** 3 : 1 - (-2 * t + 2) ** 3 / 2);
+      let raf = 0;
+
+      const stop = () => {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      };
+
+      const jump = (y: number) => scrollTo({ top: y, behavior: 'instant' });
+
+      const glide = (to: number) => {
+        stop();
+        const from = scrollY;
+        const dist = Math.abs(to - from);
+        if (reduced.matches || dist < 2) {
+          jump(to);
+          return;
+        }
+        const load = Math.min(MAX_LOAD, Math.max(1, (innerWidth * innerHeight) / BASE_AREA));
+        const duration = Math.min(MAX_MS * load, (MIN_MS + dist * MS_PER_PX) * load);
+        const start = performance.now();
+        const step = (now: number) => {
+          const t = Math.min(1, (now - start) / duration);
+          jump(from + (to - from) * ease(t));
+          raf = t < 1 ? requestAnimationFrame(step) : 0;
+        };
+        raf = requestAnimationFrame(step);
+      };
+
+      document.addEventListener('click', (e) => {
+        if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        const link = (e.target as Element).closest<HTMLAnchorElement>('a[href^="#"]');
+        const hash = link?.getAttribute('href');
+        if (!link || !hash || hash.length < 2) return;
+        const target = document.getElementById(hash.slice(1));
+        if (!target) return;
+        e.preventDefault();
+        const margin = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+        const max = document.documentElement.scrollHeight - innerHeight;
+        glide(Math.min(max, Math.max(0, target.getBoundingClientRect().top + scrollY - margin)));
+        history.pushState(null, '', hash);
+      });
+
+      addEventListener('wheel', stop, { passive: true });
+      addEventListener('touchstart', stop, { passive: true });
+      addEventListener('keydown', stop);
+    </script>
+  </body>
+</html>

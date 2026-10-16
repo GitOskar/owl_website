@@ -1,0 +1,86 @@
+{
+  "paragraphs": [
+    "Cześć, jestem Oskar, inżynier oprogramowania z ponad 5-letnim komercyjnym doświadczeniem w tworzeniu systemów backendowych w Javie. Większość tego czasu poświęciłem projektowaniu systemów finansowych w architekturze mikroserwisowej, pracując przy obsłudze płatności i usługach finansowych, gdzie liczą się niezawodność, bezpieczeństwo i jasna komunikacja.",
+    "Lubię trudne problemy algorytmiczne i szukanie wydajnych rozwiązań. Prowadzę projekty przez cały cykl: architektura systemu, analiza techniczna, implementacja, testy, wdrożenia produkcyjne i support trzeciej linii. Projektuję też API dla klientów i pomagam im w integracji.",
+    "Obecnie pogłębiam wiedzę o aplikacjach cloud-native, konteneryzacji i skalowalnych wdrożeniach. Swobodnie pracuję z narzędziami AI.",
+    "Poza pracą biegam, chodzę po górach, trenuję sztuki walki i gotuję. Programowanie pozostaje też moim hobby."
+  ],
+  "highlights": [
+    {
+      "value": "5+ lat",
+      "label": "Komercyjne doświadczenie w Javie, od 2021 roku"
+    },
+    {
+      "value": "Fintech",
+      "label": "Obsługa płatności, dane wrażliwe, audyty zgodności"
+    },
+    {
+      "value": "Od A do Z",
+      "label": "Architektura, rozwój, wdrożenia, support trzeciej linii"
+    }
+  ],
+  "domain": {
+    "title": "Płatności i integracje",
+    "items": [
+      "Integracje płatnicze Mastercard i Visa przez ISO 8583",
+      "EMV 3-D Secure dla Visa i Mastercard",
+      "BLIK",
+      "Integracje z krajowymi i europejskimi systemami regulacyjnymi",
+      "Wewnętrzne systemy monitoringu i rozliczeń",
+      "Wsparcie analityków finansowych",
+      "Projektowanie API dla klientów i wsparcie integracji",
+      "Cykl życia transakcji kartowej: autoryzacja, clearing, rozliczenie",
+      "Chargebacki i reklamacje",
+      "Fraud, AML i sankcje",
+      "Certyfikacja w organizacjach kartowych i testy w sandboxie"
+    ]
+  },
+  "skillGroups": [
+    {
+      "title": "Backend",
+      "items": ["Java", "Spring Boot", "Spring WebFlux", "Spring Security", "JPA / Hibernate", "Querydsl", "RxJava", "Groovy", "Python (skrypty, data science)", "Bash", "Spring Batch", "Project Reactor"]
+    },
+    {
+      "title": "Architektura",
+      "items": ["Projektowanie architektury systemów", "Domain-Driven Design", "Architektura zdarzeniowa", "Architektura heksagonalna", "Wzorce resilience"]
+    },
+    {
+      "title": "Integracje i komunikaty",
+      "items": ["REST", "SOAP", "ISO 8583", "gRPC", "Kafka", "RabbitMQ", "Apache Camel", "OpenAPI / Swagger"]
+    },
+    {
+      "title": "Dane",
+      "items": ["PostgreSQL", "MySQL", "Redis", "SQL", "Flyway", "Liquibase"]
+    },
+    {
+      "title": "Bezpieczeństwo",
+      "items": ["OAuth2", "JWT", "PCI DSS", "Tokenizacja", "HSM", "Szyfrowanie"]
+    },
+    {
+      "title": "Observability",
+      "items": ["Grafana", "Prometheus", "ELK", "Kibana", "Sentry"]
+    },
+    {
+      "title": "Jakość i dostarczanie",
+      "items": ["JUnit", "Spock", "Mockito", "WireMock", "Cucumber", "Testcontainers", "SonarQube", "Testy wydajnościowe", "Docker", "Git", "Maven", "Gradle", "Jenkins"]
+    },
+    {
+      "title": "Sposób pracy",
+      "items": ["Scrum", "Planowanie sprintów", "Jira", "Code review", "Mentoring", "TDD", "BDD", "Git Flow", "Trunk-based development", "Support trzeciej linii", "Programowanie wspomagane AI"]
+    },
+    {
+      "title": "Frontend",
+      "items": ["Angular", "TypeScript", "JavaScript", "HTML", "CSS", "Astro"]
+    }
+  ],
+  "facts": [
+    {
+      "label": "Wykształcenie",
+      "value": "Magister informatyki, Uniwersytet Marii Curie-Skłodowskiej"
+    },
+    {
+      "label": "Języki",
+      "value": "polski (ojczysty), angielski (komunikatywny)"
+    }
+  ]
+}

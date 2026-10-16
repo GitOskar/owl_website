@@ -1,0 +1,35 @@
+{
+  "intro": "Backend dla zespołów i firm, które potrzebują niezawodnych systemów. Dostępny dla kontraktów B2B, etatów i zleceń prywatnych.",
+  "cards": [
+    {
+      "title": "Backend i mikroserwisy",
+      "summary": "Projektowanie i tworzenie systemów backendowych w Javie i Springu, od analizy technicznej i architektury po implementację, testy i wdrożenie na produkcję.",
+      "tags": ["Java", "Spring Boot", "Microservices", "Kafka", "PostgreSQL"]
+    },
+    {
+      "title": "Integracje płatnicze i finansowe",
+      "summary": "Łączenie systemów z organizacjami kartowymi, metodami płatności i platformami regulacyjnymi, z naciskiem na bezpieczeństwo, dane wrażliwe i zgodność.",
+      "tags": ["ISO 8583", "3-D Secure", "BLIK", "PCI DSS"]
+    },
+    {
+      "title": "Projektowanie API i wsparcie integracji",
+      "summary": "Planowanie czytelnych, dobrze udokumentowanych API i pomoc klientom w integracji, od dokumentacji po diagnozowanie problemów.",
+      "tags": ["REST", "OpenAPI", "Documentation", "Client support"]
+    },
+    {
+      "title": "Wsparcie produkcji i niezawodność",
+      "summary": "Support trzeciej linii, rozwiązywanie incydentów, monitoring i bezpieczne wdrożenia, żeby krytyczne systemy działały bez przerw.",
+      "tags": ["On-call", "Observability", "Deployments", "Testing"]
+    },
+    {
+      "title": "Strony i aplikacje webowe",
+      "summary": "Szybkie, czytelne strony dla firm i osób prywatnych, od projektu i struktury treści po wykonanie i uruchomienie.",
+      "tags": ["Astro", "TypeScript", "Angular", "HTML", "CSS"]
+    },
+    {
+      "title": "Pipeline'y CI/CD",
+      "summary": "Konfiguracja i usprawnianie procesów budowania, testowania i wydawania, żeby zmiany trafiały na produkcję automatycznie, bezpiecznie i powtarzalnie.",
+      "tags": ["Jenkins", "Docker", "Maven", "Gradle", "SonarQube"]
+    }
+  ]
+}

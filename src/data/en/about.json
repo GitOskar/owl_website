@@ -1,0 +1,167 @@
+{
+  "paragraphs": [
+    "I'm Oskar, a software engineer with 5+ years of commercial experience building backend systems in Java. Most of that time went into microservices in fintech, working on payment processing and financial services, where reliability, security and clear communication matter.",
+    "I enjoy hard algorithmic problems and finding efficient solutions. I own the full cycle: system architecture, technical analysis, implementation, testing, production deployments and third-line support. I also design client-facing APIs and help clients integrate with them.",
+    "Next, I'm deepening my skills in cloud-native applications, containerization and scalable deployments. I work fluently with AI tools.",
+    "Outside of work I run, hike in the mountains, train martial arts, and cook. Programming stays a hobby too."
+  ],
+  "highlights": [
+    {
+      "value": "5+ years",
+      "label": "Commercial Java experience, since 2021"
+    },
+    {
+      "value": "Fintech",
+      "label": "Payment processing, sensitive data, compliance audits"
+    },
+    {
+      "value": "End to end",
+      "label": "Architecture, development, deployments, third-line support"
+    }
+  ],
+  "domain": {
+    "title": "Payments & integrations",
+    "items": [
+      "Mastercard and Visa ISO 8583 payment integrations",
+      "EMV 3-D Secure for Visa and Mastercard",
+      "BLIK",
+      "Integrations with national and European regulatory systems",
+      "Internal monitoring and settlement systems",
+      "Supporting financial analysts",
+      "Client-facing API design and integration support",
+      "Card transaction lifecycle: authorization, clearing, settlement",
+      "Chargebacks and disputes",
+      "Fraud, AML and sanctions",
+      "Scheme certification and sandbox testing"
+    ]
+  },
+  "skillGroups": [
+    {
+      "title": "Backend",
+      "items": [
+        "Java",
+        "Spring Boot",
+        "Spring WebFlux",
+        "Spring Security",
+        "JPA / Hibernate",
+        "Querydsl",
+        "RxJava",
+        "Groovy",
+        "Python (scripting, data science)",
+        "Bash",
+        "Spring Batch",
+        "Project Reactor"
+      ]
+    },
+    {
+      "title": "Architecture",
+      "items": [
+        "System architecture design",
+        "Domain-Driven Design",
+        "Event-driven architecture",
+        "Hexagonal architecture",
+        "Resilience patterns"
+      ]
+    },
+    {
+      "title": "Integration & messaging",
+      "items": [
+        "REST",
+        "SOAP",
+        "ISO 8583",
+        "gRPC",
+        "Kafka",
+        "RabbitMQ",
+        "Apache Camel",
+        "OpenAPI / Swagger"
+      ]
+    },
+    {
+      "title": "Data",
+      "items": [
+        "PostgreSQL",
+        "MySQL",
+        "Redis",
+        "SQL",
+        "Flyway",
+        "Liquibase"
+      ]
+    },
+    {
+      "title": "Security",
+      "items": [
+        "OAuth2",
+        "JWT",
+        "PCI DSS",
+        "Tokenization",
+        "HSM",
+        "Encryption"
+      ]
+    },
+    {
+      "title": "Observability",
+      "items": [
+        "Grafana",
+        "Prometheus",
+        "ELK",
+        "Kibana",
+        "Sentry"
+      ]
+    },
+    {
+      "title": "Quality & delivery",
+      "items": [
+        "JUnit",
+        "Spock",
+        "Mockito",
+        "WireMock",
+        "Cucumber",
+        "Testcontainers",
+        "SonarQube",
+        "Performance testing",
+        "Docker",
+        "Git",
+        "Maven",
+        "Gradle",
+        "Jenkins"
+      ]
+    },
+    {
+      "title": "Ways of working",
+      "items": [
+        "Scrum",
+        "Sprint planning",
+        "Jira",
+        "Code review",
+        "Mentoring",
+        "TDD",
+        "BDD",
+        "Git Flow",
+        "Trunk-based development",
+        "Third-line support",
+        "AI-assisted development"
+      ]
+    },
+    {
+      "title": "Frontend",
+      "items": [
+        "Angular",
+        "TypeScript",
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Astro"
+      ]
+    }
+  ],
+  "facts": [
+    {
+      "label": "Education",
+      "value": "Master's in IT, Maria Curie-Skłodowska University"
+    },
+    {
+      "label": "Languages",
+      "value": "Polish (native), English (communicative)"
+    }
+  ]
+}

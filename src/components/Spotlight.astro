@@ -1,0 +1,93 @@
+<div class="spotlight" aria-hidden="true"></div>
+
+<style is:global>
+  .spotlight {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: calc(var(--on, 0) * 0.55);
+    transition: opacity 0.6s;
+    background-image: radial-gradient(circle, var(--owl) 1.2px, transparent 1.6px);
+    background-size: 28px 28px;
+    -webkit-mask-image: radial-gradient(circle 280px at var(--x, 50%) var(--y, 50%), #000, transparent);
+    mask-image: radial-gradient(circle 280px at var(--x, 50%) var(--y, 50%), #000, transparent);
+  }
+  .spotlight::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle 360px at var(--x, 50%) var(--y, 50%), rgba(214, 58, 55, 0.04), transparent);
+  }
+  .glow { position: relative; }
+  .glow::before, .glow::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: var(--gl, 0);
+    transition: opacity 0.3s;
+  }
+  .glow::before {
+    padding: 1px;
+    background: radial-gradient(circle 200px at var(--mx, 50%) var(--my, 50%), var(--owl-hot), transparent);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  }
+  .glow::after {
+    background: radial-gradient(circle 220px at var(--mx, 50%) var(--my, 50%), rgba(255, 90, 79, 0.08), transparent);
+  }
+  @media (prefers-reduced-motion: reduce), (hover: none) {
+    .spotlight { display: none; }
+    .glow::before, .glow::after { display: none; }
+  }
+</style>
+
+<script>
+  const layer = document.querySelector<HTMLElement>('.spotlight');
+  const fine = matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+  const cards = [...document.querySelectorAll<HTMLElement>('.cards > li, .highlights li, .card, .spot')];
+
+  if (layer && fine.matches) {
+    for (const card of cards) if (!card.classList.contains('spot')) card.classList.add('glow');
+
+    let tx = innerWidth / 2;
+    let ty = innerHeight / 2;
+    let x = tx;
+    let y = ty;
+    let raf = 0;
+
+    const paint = () => {
+      raf = 0;
+      x += (tx - x) * 0.18;
+      y += (ty - y) * 0.18;
+      layer.style.setProperty('--x', `${x}px`);
+      layer.style.setProperty('--y', `${y}px`);
+      for (const card of cards) {
+        const r = card.getBoundingClientRect();
+        const near = tx > r.left - 220 && tx < r.right + 220 && ty > r.top - 220 && ty < r.bottom + 220;
+        card.style.setProperty('--gl', near ? '1' : '0');
+        if (near) {
+          card.style.setProperty('--mx', `${tx - r.left}px`);
+          card.style.setProperty('--my', `${ty - r.top}px`);
+        }
+      }
+      if (Math.abs(tx - x) > 0.5 || Math.abs(ty - y) > 0.5) raf = requestAnimationFrame(paint);
+    };
+
+    const schedule = () => {
+      if (!raf) raf = requestAnimationFrame(paint);
+    };
+
+    addEventListener('pointermove', (e) => {
+      tx = e.clientX;
+      ty = e.clientY;
+      layer.style.setProperty('--on', '1');
+      schedule();
+    });
+    document.addEventListener('pointerleave', () => layer.style.setProperty('--on', '0'));
+    addEventListener('scroll', schedule, { passive: true });
+  }
+</script>
