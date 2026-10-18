@@ -17,6 +17,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      BASE_PATH: /owl_website
     steps:
       - uses: actions/checkout@v4
       - uses: withastro/action@v3

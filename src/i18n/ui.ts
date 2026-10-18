@@ -45,4 +45,5 @@ export const ui = {
 
 export const languageNames: Record<Lang, string> = { en: 'English', pl: 'Polski' };
 
-export const homePath = (lang: Lang) => (lang === defaultLang ? '/' : `/${lang}/`);
+export const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+export const homePath = (lang: Lang) => (lang === defaultLang ? `${basePath}/` : `${basePath}/${lang}/`);

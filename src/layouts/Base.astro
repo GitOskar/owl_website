@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import Spotlight from '../components/Spotlight.astro';
 import Backdrop from '../components/Backdrop.astro';
-import { ui, languages, homePath, type Lang } from '../i18n/ui';
+import { ui, languages, homePath, basePath, type Lang } from '../i18n/ui';
 
 interface Props {
   lang: Lang;
@@ -20,7 +20,7 @@ const site = Astro.site;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0c0b0b" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${basePath}/favicon.svg`} />
     <meta name="generator" content={Astro.generator} />
     {site && <link rel="canonical" href={new URL(homePath(lang), site)} />}
     {site && languages.map((l) => <link rel="alternate" hreflang={l} href={new URL(homePath(l), site)} />)}
