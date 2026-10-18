@@ -23,6 +23,8 @@ const ogLocale = lang === 'pl' ? 'pl_PL' : 'en_US';
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0c0b0b" />
     <link rel="icon" type="image/svg+xml" href={`${basePath}/favicon.svg`} />
+    <link rel="icon" type="image/png" sizes="64x64" href={`${basePath}/favicon.png`} />
+    <link rel="apple-touch-icon" href={`${basePath}/apple-touch-icon.png`} />
     <meta name="generator" content={Astro.generator} />
     {site && <link rel="canonical" href={new URL(homePath(lang), site)} />}
     {site && languages.map((l) => <link rel="alternate" hreflang={l} href={new URL(homePath(l), site)} />)}
